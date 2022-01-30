@@ -13,7 +13,9 @@ namespace HW
         {
             Logger logger = Logger.GetLogger();
 
-            logger.AddLogg(DateTime.Now.ToString() + " Info Start method: InfoLogg \n");
+            LoggInfo loggInfo = new LoggInfo(DateTime.Now, "Info", "Start method: InfoLogg");
+
+            logger.AddLogg(loggInfo);
 
             return new Result(true);
         }
@@ -21,7 +23,9 @@ namespace HW
         {
             Logger logger = Logger.GetLogger();
 
-            logger.AddLogg(DateTime.Now.ToString() + " Warning Skipped logic in method: WarningLogg \n");
+            LoggInfo loggInfo = new LoggInfo(DateTime.Now, "Warning", "Skipped logic in method: WarningLogg");
+
+            logger.AddLogg(loggInfo);
 
             return new Result(true);
         }

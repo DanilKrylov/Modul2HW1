@@ -12,6 +12,7 @@ namespace HW
         public static void Run()
         {
             Random random = new Random();
+            var logger = Logger.GetLogger();
 
             Result result = null;
             for (int i = 0; i < 100; i++)
@@ -30,15 +31,19 @@ namespace HW
                 }
                 if (!result.Status)
                 {
-                    var logger = Logger.GetLogger();
-                    logger.AddLogg(DateTime.Now.ToString() + $" Warning Action failed by a reason: {result.Message}\n");
+                    LoggInfo loggInfo = new LoggInfo(DateTime.Now, "Error", $"Action failed by a reason: {result.Message}");
+
+                    logger.AddLogg(loggInfo);
                 }
             }
 
-            var loggs = Logger.GetLogger();
+            var loggs = new StringBuilder(); 
+            foreach(LoggInfo elem in logger.GetLoggs())
+            {
+                loggs.Append(elem.ToString() + "\n");
+            }
 
-            
-            File.WriteAllText("log.txt", loggs.GetLoggs());
+            File.WriteAllText("logg.txt", loggs.ToString());
         }
     }
 }

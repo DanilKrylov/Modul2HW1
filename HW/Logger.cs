@@ -10,7 +10,7 @@ namespace HW
     {
         private static Logger _logger;
 
-        private StringBuilder Loggs { get;set; } = new StringBuilder();
+        private List<LoggInfo> Loggs { get;set; } = new List<LoggInfo>();
 
         private Logger()
         {
@@ -26,14 +26,14 @@ namespace HW
             return _logger;
         }
 
-        public void AddLogg(string logg)
+        public void AddLogg(LoggInfo logg)
         {
-            Console.WriteLine(logg);
-            Loggs.Append(logg + "\t");
+            Console.WriteLine(logg.ToString() + "\n");
+            Loggs.Add(logg);
         }
-        public string GetLoggs()
+        public List<LoggInfo> GetLoggs()
         {
-            return Loggs.ToString();
+            return Loggs;
         }
     }
 }
